@@ -37,5 +37,5 @@ spec:
   owner: team-b
   system: test-portal
   dependsOn: ["resource:test-db"]
-    providesApis:
+  providesApis:
     - test-api-2
