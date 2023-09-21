@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: test-component
-  description: Test component
+  name: test-service-component 
+  description: Test component for service
   tags:
     - javascript
     - test
