@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: artist-lookup
-  description: Artist Lookup
+  name: test-component
+  description: Test component
   tags:
     - javascript
     - test
@@ -33,7 +33,7 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: team-a
-  system: artist-engagement-portal
-  dependsOn: ['resource:artists-db']
+  owner: team-b
+  system: test-portal
+  dependsOn: ['resource:test-db']
   apiConsumedBy: ['component:www-artist']
