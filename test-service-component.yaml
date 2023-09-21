@@ -4,7 +4,8 @@ metadata:
   name: test-service-component 
   description: Test component for service
   tags:
-    - javascript
+    - typescript
+    - react
     - test
   links:
     - url: https://example.com/user

@@ -4,7 +4,8 @@ metadata:
   name: test-website-component
   description: Test component for website
   tags:
-    - javascript
+    - html
+    - css
     - test
   links:
     - url: https://example.com/user

@@ -4,7 +4,8 @@ metadata:
   name: test-library-component
   description: Test component for library
   tags:
-    - javascript
+    - python
+    - docs
     - test
   links:
     - url: https://example.com/user
