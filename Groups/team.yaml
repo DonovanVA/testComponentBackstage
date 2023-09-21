@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: explorers
+  description: the backstage explorers
+spec:
+  type: special unit
+  profile:
+    displayName: Infrastructure
+    email: infrastructure@example.com
+    picture: https://example.com/groups/bu-infrastructure.jpeg
+  parent: ops
+  children: [team-a, team-b]
+  members: [Donovan]
