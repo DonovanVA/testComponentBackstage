@@ -37,4 +37,5 @@ spec:
   owner: team-b
   system: test-portal
   dependsOn: ["resource:test-db"]
-  apiConsumedBy: ["api:test-api-1"]
+    providesApis:
+    - test-api-2
