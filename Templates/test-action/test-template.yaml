@@ -70,5 +70,5 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage
+        repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage/tree/main
         catalogInfoPath: '/Templates/test-action/catalog-info.yaml'
