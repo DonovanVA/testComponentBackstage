@@ -31,6 +31,12 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
+          # Here's the option you can pass to the RepoUrlPicker
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github:
+                  - workflow
             allowedHosts:
               - github.com
 
@@ -58,7 +64,8 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-
+        # here's where the secret can be used
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
     - id: register
       name: Register
       action: catalog:register
