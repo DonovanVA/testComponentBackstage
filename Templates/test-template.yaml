@@ -54,8 +54,8 @@ spec:
       name: Fetch Docs
       action: fetch:plain
       input:
-        targetPath: ./community
-        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+        targetPath: ./
+        url: https://github.com/DonovanVA/test-action-react-template
 
     - id: publish
       name: Publish
