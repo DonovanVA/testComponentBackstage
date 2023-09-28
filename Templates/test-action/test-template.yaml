@@ -70,5 +70,5 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage
         catalogInfoPath: '/test-action-react-template/catalog-info.yaml'
