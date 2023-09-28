@@ -54,7 +54,7 @@ spec:
       name: Fetch Docs
       action: fetch:plain
       input:
-        targetPath: ./
+        targetPath: ./test-action-react-template
         url: https://github.com/DonovanVA/test-action-react-template
 
     - id: publish
