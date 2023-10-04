@@ -39,7 +39,6 @@ spec:
                   - workflow
             allowedHosts:
               - github.com
-
   # here's the steps that are executed in series in the scaffolder backend -> include your custom actions here
   steps:
     - id: fetch-base
@@ -87,7 +86,42 @@ spec:
           CMD ["npm", "start"]
         
         filename: Dockerfile
-    ## publish params
+
+    - id: overwrite-file
+        name: Overwrite file
+        action: roadiehq:utils:fs:write
+        input:
+          path: 
+          content: | 
+            import React from 'react';
+            import logo from './logo.svg';
+            import './App.css';
+
+            function App() {
+              return (
+                <div className="App">
+                  <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                      Edit <code>${{ parameters.name }}</code> and save to reload.
+                    </p>
+                    <a
+                      className="App-link"
+                      href="https://reactjs.org"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Learn React
+                    </a>
+                  </header>
+                </div>
+              );
+            }
+
+            export default App;
+
+
+      ## publish params
     - id: publish
       name: Publish
       action: publish:github
