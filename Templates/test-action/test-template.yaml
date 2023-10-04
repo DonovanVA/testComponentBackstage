@@ -60,31 +60,33 @@ spec:
     - id: create-file
       name: Create File
       action: acme:file:create ## (custom action) maps to the id of the create file action
-      input: |
-      # Use an official Node.js runtime as the base image
-        FROM node:14
+      input: ## (custom action) maps to the "contents and "filename" fields of the properties segment in the createNewFileAction field under schema
+        contents: | 
+          # Use an official Node.js runtime as the base image
+          FROM node:14
 
-      # Set the working directory in the container
-        WORKDIR /app
+          # Set the working directory in the container
+            WORKDIR /app
 
-      # Copy package.json and package-lock.json to the container
-        COPY package*.json ./
+          # Copy package.json and package-lock.json to the container
+            COPY package*.json ./
 
-      # Install app dependencies
-        RUN npm install
+          # Install app dependencies
+            RUN npm install
 
-      # Copy the rest of the application code to the container
-        COPY . .
+          # Copy the rest of the application code to the container
+            COPY . .
 
-      # Build the React app
-        RUN npm run build
+          # Build the React app
+            RUN npm run build
 
-      # Expose the port your app will run on (default is 3000)
-        EXPOSE 3000
+          # Expose the port your app will run on (default is 3000)
+            EXPOSE 3000
 
-      # Start the React app
-        CMD ["npm", "start"]
-
+          # Start the React app
+            CMD ["npm", "start"]
+        
+        filename: Dockerfile
     ## publish params
     - id: publish
       name: Publish
