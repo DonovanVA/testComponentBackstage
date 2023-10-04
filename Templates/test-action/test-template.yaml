@@ -86,12 +86,12 @@ spec:
           CMD ["npm", "start"]
         
         filename: Dockerfile
-
+    ## overwrite existing file
     - id: overwrite-file
         name: Overwrite file
         action: roadiehq:utils:fs:write
         input:
-          path: 
+          path: /src/App.tsx
           content: | 
             import React from 'react';
             import logo from './logo.svg';
@@ -119,7 +119,7 @@ spec:
             }
 
             export default App;
-
+    ## overwrite existing file
 
       ## publish params
     - id: publish
