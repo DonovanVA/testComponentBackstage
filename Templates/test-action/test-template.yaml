@@ -39,6 +39,7 @@ spec:
                   - workflow
             allowedHosts:
               - github.com
+    
   # here's the steps that are executed in series in the scaffolder backend -> include your custom actions here
   steps:
     - id: fetch-base
@@ -93,7 +94,7 @@ spec:
         files:
           - file: "./src/App.tsx"
             find: "src/App.tsx"
-            replaceWith: ${{ parameters.name }}
+            replaceWith: name
       ## publish params
     - id: publish
       name: Publish
