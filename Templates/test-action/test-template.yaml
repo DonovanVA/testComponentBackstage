@@ -56,7 +56,7 @@ spec:
       input:
         targetPath: ./
         url: https://github.com/DonovanVA/test-action-react-template
-    ## Include your create new file action in this region
+    ## (Optional) Include your create new file action in this region
     - id: create-file
       name: Create File
       action: acme:file:create ## (custom action) maps to the id of the create file action
@@ -87,14 +87,15 @@ spec:
           CMD ["npm", "start"]
 
         filename: Dockerfile
+    ##(Optional) Replace a text in file
     - id: Replace text in file
       name: Replace
       action: roadiehq:utils:fs:replace
       input:
         files:
-          - file: "./src/App.tsx"
-            find: "src/App.tsx"
-            replaceWith: ${{ parameters.name }}
+          - file: "./src/App.tsx" ## file name to introspect
+            find: "src/App.tsx" ## expression to be replaced
+            replaceWith: ${{ parameters.name }} ## the text to be replaced with
       ## publish params
     - id: publish
       name: Publish
