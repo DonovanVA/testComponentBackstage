@@ -49,7 +49,7 @@ spec:
         url: ./template
         values:
           name: ${{ parameters.name }}
-    ## TBD: work here
+    ## work here
     - id: fetch-docs
       name: Fetch Docs
       action: fetch:plain
@@ -59,15 +59,37 @@ spec:
     ## Include your create new file action in this region
     - id: create-file
       name: Create File
-      action: acme:file:create ## the create file action
-      input:
-        contents: ${{##Docker file contents for parameters.name}}
-        filename: Dockerfile
-    ## TBD: publish params
+      action: acme:file:create ## (custom action) maps to the id of the create file action
+      input: |
+      # Use an official Node.js runtime as the base image
+        FROM node:14
+
+      # Set the working directory in the container
+        WORKDIR /app
+
+      # Copy package.json and package-lock.json to the container
+        COPY package*.json ./
+
+      # Install app dependencies
+        RUN npm install
+
+      # Copy the rest of the application code to the container
+        COPY . .
+
+      # Build the React app
+        RUN npm run build
+
+      # Expose the port your app will run on (default is 3000)
+        EXPOSE 3000
+
+      # Start the React app
+        CMD ["npm", "start"]
+
+    ## publish params
     - id: publish
       name: Publish
       action: publish:github
-      input:
+      input: 
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
