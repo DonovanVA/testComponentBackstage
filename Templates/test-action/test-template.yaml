@@ -60,7 +60,7 @@ spec:
       name: Create File
       action: acme:file:create ## (custom action) maps to the id of the create file action
       input: ## (custom action) maps to the "contents and "filename" fields of the properties segment in the createNewFileAction field under schema
-        contents: | 
+        contents: |
           # Use an official Node.js runtime as the base image
           FROM node:14
 
@@ -84,48 +84,21 @@ spec:
 
           # Start the React app
           CMD ["npm", "start"]
-        
+
         filename: Dockerfile
-    ## overwrite existing file
-    - id: overwrite-file
-      name: Overwrite file
-      action: roadiehq:utils:fs:write
+    - id: Replace text in file
+      name: Replace
+      action: roadiehq:utils:fs:replace
       input:
-        path: /src/App.tsx
-        content: | 
-          import React from 'react';
-          import logo from './logo.svg';
-          import './App.css';
-
-          function App() {
-            return (
-              <div className="App">
-                <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <p>
-                    Edit <code>${{ parameters.name }}</code> and save to reload.
-                  </p>
-                  <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Learn React
-                  </a>
-                </header>
-              </div>
-            );
-          }
-
-          export default App;
-    ## overwrite existing file
-
+      files:
+        - file: "./src/App.tsx"
+          find: "src/App.tsx"
+          replaceWith: ${{ parameters.name }}
       ## publish params
     - id: publish
       name: Publish
       action: publish:github
-      input: 
+      input:
         allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
