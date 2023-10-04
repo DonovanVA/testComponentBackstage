@@ -63,7 +63,7 @@ spec:
       input: ## (custom action) maps to the "contents and "filename" fields of the properties segment in the createNewFileAction field under schema
         contents: | 
           # Use an official Node.js runtime as the base image
-          FROM node:14
+            FROM node:14
 
           # Set the working directory in the container
             WORKDIR /app
