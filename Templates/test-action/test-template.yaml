@@ -94,7 +94,7 @@ spec:
         files:
           - file: "./src/App.tsx"
             find: "src/App.tsx"
-            replaceWith: name
+            replaceWith: ${{ parameters.name }}
       ## publish params
     - id: publish
       name: Publish
