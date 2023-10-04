@@ -88,37 +88,37 @@ spec:
         filename: Dockerfile
     ## overwrite existing file
     - id: overwrite-file
-        name: Overwrite file
-        action: roadiehq:utils:fs:write
-        input:
-          path: /src/App.tsx
-          content: | 
-            import React from 'react';
-            import logo from './logo.svg';
-            import './App.css';
+      name: Overwrite file
+      action: roadiehq:utils:fs:write
+      input:
+        path: /src/App.tsx
+        content: | 
+          import React from 'react';
+          import logo from './logo.svg';
+          import './App.css';
 
-            function App() {
-              return (
-                <div className="App">
-                  <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                      Edit <code>${{ parameters.name }}</code> and save to reload.
-                    </p>
-                    <a
-                      className="App-link"
-                      href="https://reactjs.org"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Learn React
-                    </a>
-                  </header>
-                </div>
-              );
-            }
+          function App() {
+            return (
+              <div className="App">
+                <header className="App-header">
+                  <img src={logo} className="App-logo" alt="logo" />
+                  <p>
+                    Edit <code>${{ parameters.name }}</code> and save to reload.
+                  </p>
+                  <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn React
+                  </a>
+                </header>
+              </div>
+            );
+          }
 
-            export default App;
+          export default App;
     ## overwrite existing file
 
       ## publish params
