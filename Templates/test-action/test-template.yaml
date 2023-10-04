@@ -90,10 +90,10 @@ spec:
       name: Replace
       action: roadiehq:utils:fs:replace
       input:
-      files:
-        - file: "./src/App.tsx"
-          find: "src/App.tsx"
-          replaceWith: ${{ parameters.name }}
+        files:
+          - file: "./src/App.tsx"
+            find: "src/App.tsx"
+            replaceWith: ${{ parameters.name }}
       ## publish params
     - id: publish
       name: Publish
