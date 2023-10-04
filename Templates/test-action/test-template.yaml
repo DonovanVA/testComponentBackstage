@@ -9,7 +9,7 @@ spec:
   owner: team-b
   type: service
 
-  # these are the steps which are rendered in the frontend with the form input
+  # these are the steps which are rendered in the frontend with the form input -> can include fields for custom file actions here
   parameters:
     - title: Fill in some steps
       required:
@@ -31,7 +31,7 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
-          # Here's the option you can pass to the RepoUrlPicker
+            # Here's the option you can pass to the RepoUrlPicker
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
@@ -40,7 +40,7 @@ spec:
             allowedHosts:
               - github.com
 
-  # here's the steps that are executed in series in the scaffolder backend
+  # here's the steps that are executed in series in the scaffolder backend -> include your custom actions here
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -49,19 +49,26 @@ spec:
         url: ./template
         values:
           name: ${{ parameters.name }}
-
+    ## TBD: work here
     - id: fetch-docs
       name: Fetch Docs
       action: fetch:plain
       input:
-        targetPath: ./test-action-react-template
+        targetPath: ./
         url: https://github.com/DonovanVA/test-action-react-template
-
+    ## Include your create new file action in this region
+    - id: create-file
+      name: Create File
+      action: acme:file:create ## the create file action
+      input:
+        contents: ${{##Docker file contents for parameters.name}}
+        filename: Dockerfile
+    ## TBD: publish params
     - id: publish
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ['github.com']
+        allowedHosts: ["github.com"]
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         # here's where the secret can be used
@@ -71,4 +78,4 @@ spec:
       action: catalog:register
       input:
         repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage/tree/main
-        catalogInfoPath: '/Templates/test-action/catalog-info.yaml'
+        catalogInfoPath: "/Templates/test-action/catalog-info.yaml"
