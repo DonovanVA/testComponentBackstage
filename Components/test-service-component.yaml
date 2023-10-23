@@ -31,7 +31,7 @@ metadata:
       icon: alert
   annotations:
     backstage.io/linguist: 'https://github.com/backstage/backstage/tree/master/plugins/playlist'
-    grafana/dashboard-selector: Kubernetes Cluster (Prometheus)
+    grafana/dashboard-selector: 'Kubernetes Cluster (Prometheus)'
     grafana/tag-selector: "my-tag"
     grafana/overview-dashboard: 'https://donovanipman.grafana.net/d/4XuMd2Iiz/kubernetes-cluster-prometheus?orgId=1'
 spec:
