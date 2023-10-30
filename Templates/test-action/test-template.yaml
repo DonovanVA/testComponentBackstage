@@ -11,7 +11,7 @@ spec:
 
   # these are the steps which are rendered in the frontend with the form input -> can include fields for custom file actions here
   parameters:
-    - title: Fill in some steps
+    - title: Name of your application
       required:
         - name
       properties:
@@ -22,6 +22,16 @@ spec:
           ui:autofocus: true
           ui:options:
             rows: 5
+    - title: Proxy
+      required:
+        - proxy
+      properties:
+        proxy:
+          title: Proxy name
+          type: string
+          description: The name of your proxy for your app to be serviced on
+          ui:options:
+            rows: 3
     - title: Choose a location
       required:
         - repoUrl
@@ -93,9 +103,17 @@ spec:
       action: roadiehq:utils:fs:replace
       input:
         files:
+            ## 1. Label the app
           - file: "./src/App.tsx" ## file name to introspect
             find: "src/App.tsx" ## expression to be replaced
             replaceWith: ${{ parameters.name }} ## the text to be replaced with
+            ## 2. Build image specs
+          - file: "./deployments/deploy.yaml" 
+            find: "${{ parameters.name }}" 
+            replaceWith: ${{ parameters.name }} 
+           - file: "./deployments/deploy.yaml" 
+            find: "${{ parameters.proxy }}" 
+            replaceWith: ${{ parameters.proxy }} 
       ## publish params
     - id: publish
       name: Publish
