@@ -108,12 +108,15 @@ spec:
             find: "src/App.tsx" ## expression to be replaced
             replaceWith: ${{ parameters.name }} ## the text to be replaced with
             ## 2. Build image specs
+          - file: "./.github/workflows/build-and-push-image.yml" 
+            find: "<parameters.name>"
+            replaceWith: ${{ parameters.name }}
           - file: "./deployments/deploy.yaml" 
-            find: "${{ parameters.name }}" 
-            replaceWith: ${{ parameters.name }} 
+            find: "<parameters.proxy>"
+            replaceWith: ${{ parameters.proxy }}
           - file: "./deployments/deploy.yaml" 
-            find: "${{ parameters.proxy }}" 
-            replaceWith: ${{ parameters.proxy }} 
+            find: "<parameters.name>" 
+            replaceWith: ${{ parameters.name }}
       ## publish params
     - id: publish
       name: Publish
