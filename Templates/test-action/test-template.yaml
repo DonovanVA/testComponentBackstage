@@ -111,7 +111,7 @@ spec:
           - file: "./deployments/deploy.yaml" 
             find: "${{ parameters.name }}" 
             replaceWith: ${{ parameters.name }} 
-           - file: "./deployments/deploy.yaml" 
+          - file: "./deployments/deploy.yaml" 
             find: "${{ parameters.proxy }}" 
             replaceWith: ${{ parameters.proxy }} 
       ## publish params
