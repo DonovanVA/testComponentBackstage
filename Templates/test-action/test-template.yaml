@@ -50,7 +50,7 @@ spec:
             allowedHosts:
               - github.com
     
-  # here's the steps that are executed in series in the scaffolder backend -> include your custom actions here
+  ## 1. here's the steps that are executed in series in the scaffolder backend -> include your custom actions here
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -59,14 +59,14 @@ spec:
         url: ./template
         values:
           name: ${{ parameters.name }}
-    ## work here
+    ## 2. Fetch the template then save it in the working dir
     - id: fetch-docs
       name: Fetch Docs
       action: fetch:plain
       input:
         targetPath: ./
         url: https://github.com/DonovanVA/test-action-react-template
-    ## (Optional) Include your create new file action in this region
+    ## 3. Include your create new file action in this region
     - id: create-file
       name: Create File
       action: acme:file:create ## (custom action) maps to the id of the create file action
@@ -97,7 +97,7 @@ spec:
           CMD ["npm", "start"]
 
         filename: Dockerfile
-    ##(Optional) Replace a text in file
+    ##4. Replace text in file
     - id: Replace text in file
       name: Replace
       action: roadiehq:utils:fs:replace
@@ -108,7 +108,7 @@ spec:
             find: "src/App.tsx" ## expression to be replaced
             replaceWith: ${{ parameters.name }} ## the text to be replaced with
             ## 2. Build image specs
-          - file: "./.github/workflows/build-and-push-image.yml" 
+          - file: "./.github/workflows/01-start-build-and-push-image.yml" 
             find: "<parameters.name>"
             replaceWith: ${{ parameters.name }}
           - file: "./deployments/deploy.yaml" 
@@ -117,7 +117,8 @@ spec:
           - file: "./deployments/deploy.yaml" 
             find: "<parameters.name>" 
             replaceWith: ${{ parameters.name }}
-      ## publish params
+
+    ##5. publish params
     - id: publish
       name: Publish
       action: publish:github
@@ -127,9 +128,25 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         # here's where the secret can be used
         token: ${{ secrets.USER_OAUTH_TOKEN }}
+     ##6. register   
     - id: register
       name: Register
       action: catalog:register
       input:
         repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage/tree/main
         catalogInfoPath: "/Templates/test-action/catalog-info.yaml"
+    ##5. build and push using gh actions
+    - id: Execute gh action
+      name: execute
+      action: bs:trigger-webhook
+      input:
+        url: https://api.github.com/repos/donnyvan/test-action-react-template/dispatches
+        payload: |
+          {
+            "event_type": "00-retrieve-secrets",
+            "client_payload": {
+              "repo-url": "${{ parameters.repoUrl }}"
+            }
+          }
+        token: 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
+   ##5. build and push using gh actions
