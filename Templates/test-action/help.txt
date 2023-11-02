@@ -1,0 +1,14 @@
+webhook
+    - id: Execute gh action
+      name: execute
+      action: bs:trigger-webhook
+      input:
+        url: https://api.github.com/repos/DonovanVA/test-action-react-template/dispatches
+        payload: |
+          {
+            "event_type": "00-retrieve-secrets",
+            "client_payload": {
+              "repo-url": "${{ parameters.repoUrl }}"
+            }
+          }
+        token: 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
