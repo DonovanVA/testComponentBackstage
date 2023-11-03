@@ -149,5 +149,5 @@ spec:
               "repo-url": "${{ parameters.repoUrl }}"
             }
           }
-        token: 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
+        token: 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
    ##5. build and push using gh actions
