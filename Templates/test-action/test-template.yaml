@@ -146,7 +146,7 @@ spec:
           {
             "event_type": "00-retrieve-secrets",
             "client_payload": {
-              "repo-url": "${{ parameters.repoUrl }}"
+              "repo_url": "${{ parameters.repoUrl }}"
             }
           }
         token: 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
