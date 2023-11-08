@@ -147,6 +147,7 @@ spec:
             "event_type": "00-retrieve-secrets",
             "client_payload": {
               "repo_url": "${{ parameters.repoUrl }}"
+              "github_token": "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"
             }
           }
         token: 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
