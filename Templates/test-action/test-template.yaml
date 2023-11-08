@@ -138,7 +138,7 @@ spec:
     ##5. build and push using gh actions
     
     - id: Execute gh action
-      name: execute
+      name: Execute GitHub Action
       action: bs:trigger-webhook
       input:
         url: https://api.github.com/repos/DonovanVA/test-action-react-template/dispatches
@@ -146,9 +146,10 @@ spec:
           {
             "event_type": "00-retrieve-secrets",
             "client_payload": {
-              "repo_url": "${{ parameters.repoUrl }}"
+              "repo_url": "${{ parameters.repoUrl }}",
               "github_token": "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"
             }
           }
         token: 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
+
    ##5. build and push using gh actions
