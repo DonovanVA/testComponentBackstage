@@ -141,7 +141,7 @@ spec:
       name: Execute GitHub Action
       action: bs:trigger-webhook
       input:
-        url: https://api.github.com/repos/${{ parameters.repoUrl }}
+        url: https://${{ parameters.repoUrl | replace('https://github.com/', '') | replace('?owner=', '/') | replace('&repo=', '/') }}
         payload: |
           {
             "event_type": "00-retrieve-secrets",
