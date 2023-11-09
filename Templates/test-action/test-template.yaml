@@ -49,7 +49,7 @@ spec:
                   - workflow
             allowedHosts:
               - github.com
-    
+
   ## 1. here's the steps that are executed in series in the scaffolder backend -> include your custom actions here
   steps:
     - id: fetch-base
@@ -103,19 +103,19 @@ spec:
       action: roadiehq:utils:fs:replace
       input:
         files:
-            ## 1. Label the app
+          ## 1. Label the app
           - file: "./src/App.tsx" ## file name to introspect
             find: "src/App.tsx" ## expression to be replaced
             replaceWith: ${{ parameters.name }} ## the text to be replaced with
             ## 2. Build image specs
-          - file: "./.github/workflows/01-start-build-and-push-image.yml" 
+          - file: "./.github/workflows/01-start-build-and-push-image.yml"
             find: "<parameters.name>"
             replaceWith: ${{ parameters.name }}
-          - file: "./deployments/deploy.yaml" 
+          - file: "./deployments/deploy.yaml"
             find: "<parameters.proxy>"
             replaceWith: ${{ parameters.proxy }}
-          - file: "./deployments/deploy.yaml" 
-            find: "<parameters.name>" 
+          - file: "./deployments/deploy.yaml"
+            find: "<parameters.name>"
             replaceWith: ${{ parameters.name }}
 
     ##5. publish params
@@ -128,7 +128,7 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         # here's where the secret can be used
         token: ${{ secrets.USER_OAUTH_TOKEN }}
-     ##6. register   
+      ##6. register
     - id: register
       name: Register
       action: catalog:register
@@ -136,12 +136,10 @@ spec:
         repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage/tree/main
         catalogInfoPath: "/Templates/test-action/catalog-info.yaml"
     ##5. build and push using gh actions
-    
+
     - id: Execute gh action
       name: Execute GitHub Action
       action: bs:trigger-webhook
-      env:
-        MY_SECRET: ${{ secrets.AUTH_SECRET }}
       input:
         url: https://api.github.com/repos/DonovanVA/test-action-react-template/dispatches
         payload: |
@@ -149,10 +147,9 @@ spec:
             "event_type": "00-retrieve-secrets",
             "client_payload": {
               "repo_url": "https://${{ parameters.repoUrl | replace('https://github.com/', '') | replace('?owner=', '/') | replace('&repo=', '/') }}",
-              "github_token": `${{'${{ MY_SECRET }}'}}`
+              "github_token": `${{ secrets.AUTH_SECRET }}`
             }
           }
-        token: ${{'${{ MY_SECRET }}'}}
+        token: ${{ secrets.AUTH_SECRET }}
 
-
-   ##5. build and push using gh actions
+    ##5. build and push using gh actions
