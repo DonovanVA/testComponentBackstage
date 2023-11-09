@@ -150,7 +150,7 @@ spec:
               "github_token": `${{ secrets.AUTH_SECRET }}`
             }
           }
-        token: `${{ secrets.AUTH_SECRET }}`
+        token: ${{ secrets.AUTH_SECRET }}
 
 
    ##5. build and push using gh actions
