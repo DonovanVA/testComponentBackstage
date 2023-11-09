@@ -140,6 +140,8 @@ spec:
     - id: Execute gh action
       name: Execute GitHub Action
       action: bs:trigger-webhook
+      env:
+        MY_SECRET: ${{ secrets.AUTH_SECRET }}
       input:
         url: https://api.github.com/repos/DonovanVA/test-action-react-template/dispatches
         payload: |
@@ -147,10 +149,10 @@ spec:
             "event_type": "00-retrieve-secrets",
             "client_payload": {
               "repo_url": "https://${{ parameters.repoUrl | replace('https://github.com/', '') | replace('?owner=', '/') | replace('&repo=', '/') }}",
-              "github_token": `${{ secrets.AUTH_SECRET }}`
+              "github_token": `${AUTH_SECRET}`
             }
           }
-        token: ${{ secrets.AUTH_SECRET }}
+        token: ${AUTH_SECRET}
 
 
    ##5. build and push using gh actions
