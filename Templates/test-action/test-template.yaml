@@ -142,7 +142,7 @@ spec:
       action: bs:trigger-webhook
       input:
         #url: ${{ parameters.repoUrl }}
-        url: https://api.github.com/repos/${{ parameters.repoUrl | replace('github.com', '') | replace('?owner=', '/') | replace('&repo=', '/') }}
+        url: https://api.github.com/repos/${{ parameters.repoUrl | replace('github.com', '') | replace('?owner=', '') | replace('&repo=', '/') }}/dispatch
         payload: |
           {
             "event_type": "00-retrieve-secrets",
