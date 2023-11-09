@@ -147,9 +147,9 @@ spec:
             "event_type": "00-retrieve-secrets",
             "client_payload": {
               "repo_url": "https://${{ parameters.repoUrl | replace('https://github.com/', '') | replace('?owner=', '/') | replace('&repo=', '/') }}",
-              "github_token": `${{ secrets.AUTH_SECRET }}`
+              "github_token": `${{ secrets.USER_OAUTH_TOKEN }}`
             }
           }
-        token: ${{ secrets.AUTH_SECRET }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
 
     ##5. build and push using gh actions
