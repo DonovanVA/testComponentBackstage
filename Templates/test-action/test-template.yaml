@@ -141,13 +141,12 @@ spec:
       name: Execute GitHub Action
       action: bs:trigger-webhook
       input:
-        url: |
-          https://github.com/${{ parameters.owner }}/${{ parameters.repo }}
+        url: https://api.github.com/repos/DonovanVA/test-action-react-template/dispatches
         payload: |
           {
             "event_type": "00-retrieve-secrets",
             "client_payload": {
-              "repo_url": "https://github.com/${{ parameters.owner }}/${{ parameters.repo }}",
+              "repo_url": "${{ parameters.repoUrl }}",
               "github_token": "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"
             }
           }
