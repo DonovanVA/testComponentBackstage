@@ -147,10 +147,10 @@ spec:
             "event_type": "00-retrieve-secrets",
             "client_payload": {
               "repo_url": "https://${{ parameters.repoUrl | replace('https://github.com/', '') | replace('?owner=', '/') | replace('&repo=', '/') }}",
-              "github_token": "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"
+              "github_token": "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"
             }
           }
-        token: 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
+        token: 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
 
 
    ##5. build and push using gh actions
