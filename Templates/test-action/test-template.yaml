@@ -149,7 +149,7 @@ spec:
             "event_type": "00-retrieve-secrets",
             "client_payload": {
               "repo_url": "https://${{ parameters.repoUrl | replace('https://github.com/', '') | replace('?owner=', '/') | replace('&repo=', '/') }}",
-              "github_token": '${AUTH_SECRET}'
+              "github_token": `${AUTH_SECRET}`
             }
           }
         token: ${AUTH_SECRET}
