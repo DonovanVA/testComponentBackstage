@@ -134,7 +134,7 @@ spec:
       action: catalog:register
       input:
         repoContentsUrl: https://github.com/DonovanVA/testComponentBackstage/tree/main
-        catalogInfoPath: "/Templates/test-action/catalog-info.yaml"
+        catalogInfoPath: "/Templates/experimental-template/catalog-info.yaml"
     ##5. build and push using gh actions
 
     - id: Execute gh action
