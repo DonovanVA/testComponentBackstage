@@ -65,7 +65,7 @@ spec:
       action: fetch:plain
       input:
         targetPath: ./
-        url: https://github.com/DonovanVA/test-action-react-template
+        url: https://github.com/DonovanVA/experimental-test-app
     ## 3. Include your create new file action in this region
     - id: create-file
       name: Create File
