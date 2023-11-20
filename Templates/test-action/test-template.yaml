@@ -139,7 +139,7 @@ spec:
 
     - id: Execute gh action
       name: Execute GitHub Action
-      action: bs:trigger-webhook`
+      action: bs:trigger-webhook
       input:
         url: https://api.github.com/repos/DonovanVA/test-action-react-template/dispatches
         payload: |
