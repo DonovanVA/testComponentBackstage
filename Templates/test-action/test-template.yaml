@@ -113,7 +113,7 @@ spec:
             replaceWith: ${{ parameters.name }}
           - file: "./.github/workflows/01-start-build-and-push-image.yml"
             find: "<parameters.docker_username>"
-            replaceWith: donnyvan ## username here
+            replaceWith: "donnyvan" ## username here
           - file: "./deployments/deploy.yaml"
             find: "<parameters.proxy>"
             replaceWith: ${{ parameters.proxy }}
