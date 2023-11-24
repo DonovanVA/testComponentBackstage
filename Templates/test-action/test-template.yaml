@@ -19,7 +19,7 @@ spec:
           title: Name
           type: string
           description: Unique name of the component (This will also be defaulted to container name)
-          maxLength: 20
+          maxLength: 30
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
           ui:autofocus: true
           ui:options:
@@ -32,7 +32,6 @@ spec:
           title: Proxy name
           type: string
           description: The name of your proxy for your app to be serviced on
-          maxLength: 20
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
           ui:options:
             rows: 3
@@ -44,7 +43,7 @@ spec:
           title: Cluster name
           type: string
           description: The name of your cluster for your app to be deployed
-          maxLength: 20
+          maxLength: 30
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
           ui:options:
             rows: 3
@@ -56,7 +55,7 @@ spec:
           title: Resource Group name
           type: string
           description: The resource group of your cluster
-          maxLength: 20
+          maxLength: 30
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
           ui:options:
             rows: 3
