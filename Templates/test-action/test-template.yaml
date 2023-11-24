@@ -144,11 +144,13 @@ spec:
           - file: "./deployments/deploy.yaml"
             find: "<parameters.proxy>"
             replaceWith: ${{ parameters.proxy }}
+          - file: "./deployments/deploy.yaml"
+            find: "<parameters.name>"
+            replaceWith: ${{ parameters.name }}
             ## 4. kube specs
           - file: "./.github/workflows/02-apply-deploy.yml"
             find: "<parameters.resource_group>"
             replaceWith: ${{ parameters.resource_group }}
-
           - file: "./.github/workflows/02-apply-deploy.yml"
             find: "<parameters.clustername>"
             replaceWith: ${{ parameters.clustername }}
