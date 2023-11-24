@@ -32,6 +32,27 @@ spec:
           description: The name of your proxy for your app to be serviced on
           ui:options:
             rows: 3
+    - title: Cluster name
+      required:
+        - clustername
+      properties:
+        clustername:
+          title: Cluster name
+          type: string
+          description: The name of your cluster for your app to be deployed
+          ui:options:
+            rows: 3
+    - title: Resource Group name
+      required:
+        - resource_group
+      properties:
+        resource_group:
+          title: Resource Group name
+          type: string
+          description: The resource group of your cluster
+          ui:options:
+            rows: 3
+
     - title: Choose a location
       required:
         - repoUrl
@@ -115,8 +136,11 @@ spec:
             find: "<parameters.proxy>"
             replaceWith: ${{ parameters.proxy }}
           - file: "./deployments/deploy.yaml"
-            find: "<parameters.name>"
-            replaceWith: ${{ parameters.name }}
+            find: "<parameters.resource_group>"
+            replaceWith: ${{ parameters.resource_group }}
+          - file: "./deployments/deploy.yaml"
+            find: "<parameters.clustername>"
+            replaceWith: ${{ parameters.clustername }}
 
     ##5. publish params
     - id: publish
