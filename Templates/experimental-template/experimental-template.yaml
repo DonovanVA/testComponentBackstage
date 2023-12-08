@@ -3,7 +3,7 @@ kind: Template
 # some metadata about the template itself
 metadata:
   name: v1beta3-demo
-  title: Test - r
+  title: Test Action template
   description: scaffolder v1beta3 template demo
 spec:
   owner: team-b
@@ -19,6 +19,8 @@ spec:
           title: Name
           type: string
           description: Unique name of the component (This will also be defaulted to container name)
+          maxLength: 30
+          pattern: "^[^'\"]*$" ## no inverted commm
           ui:autofocus: true
           ui:options:
             rows: 5
@@ -30,8 +32,34 @@ spec:
           title: Proxy name
           type: string
           description: The name of your proxy for your app to be serviced on
+          pattern: "^[^'\"]*$"
           ui:options:
             rows: 3
+    - title: Cluster name
+      required:
+        - clustername
+      properties:
+        clustername:
+          title: Cluster name
+          type: string
+          description: The name of your cluster for your app to be deployed
+          maxLength: 30
+          pattern: "^[^'\"]*$"
+          ui:options:
+            rows: 3
+    - title: Resource Group name
+      required:
+        - resource_group
+      properties:
+        resource_group:
+          title: Resource Group name
+          type: string
+          description: The resource group of your cluster
+          maxLength: 30
+          pattern: "^[^'\"]*$"
+          ui:options:
+            rows: 3
+
     - title: Choose a location
       required:
         - repoUrl
@@ -65,7 +93,7 @@ spec:
       action: fetch:plain
       input:
         targetPath: ./
-        url: https://github.com/DonovanVA/experimental-test-app
+        url: https://github.com/DonovanVA/test-action-react-template
     ## 3. Include your create new file action in this region
     - id: create-file
       name: Create File
@@ -111,12 +139,20 @@ spec:
           - file: "./.github/workflows/01-start-build-and-push-image.yml"
             find: "<parameters.name>"
             replaceWith: ${{ parameters.name }}
+            ## 3. Deploy specs
           - file: "./deployments/deploy.yaml"
             find: "<parameters.proxy>"
             replaceWith: ${{ parameters.proxy }}
           - file: "./deployments/deploy.yaml"
             find: "<parameters.name>"
             replaceWith: ${{ parameters.name }}
+            ## 4. kube specs
+          - file: "./.github/workflows/02-apply-deploy.yml"
+            find: "<parameters.resource_group>"
+            replaceWith: ${{ parameters.resource_group }}
+          - file: "./.github/workflows/02-apply-deploy.yml"
+            find: "<parameters.clustername>"
+            replaceWith: ${{ parameters.clustername }}
 
     ##5. publish params
     - id: publish
