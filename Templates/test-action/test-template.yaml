@@ -32,7 +32,7 @@ spec:
           title: Fully Qualified Domain Name
           type: string
           description: The name of your fqdn for your app to be serviced on
-          pattern: "^[^'\"]*$"
+          pattern: "^(?!.*http).*"
           ui:options:
             rows: 3
     - title: Cluster name
