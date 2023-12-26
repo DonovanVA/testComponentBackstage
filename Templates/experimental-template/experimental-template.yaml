@@ -26,12 +26,12 @@ spec:
             rows: 5
     - title: Proxy
       required:
-        - proxy
+        - fqdn
       properties:
-        proxy:
-          title: Proxy name
+        fqdn:
+          title: FQDN name
           type: string
-          description: The name of your proxy for your app to be serviced on
+          description: The name of your fqdn for your app to be serviced on
           pattern: "^[^'\"]*$"
           ui:options:
             rows: 3
@@ -141,8 +141,8 @@ spec:
             replaceWith: ${{ parameters.name }}
             ## 3. Deploy specs
           - file: "./deployments/deploy.yaml"
-            find: "<parameters.proxy>"
-            replaceWith: ${{ parameters.proxy }}
+            find: "<parameters.fqdn>"
+            replaceWith: ${{ parameters.fqdn }}
           - file: "./deployments/deploy.yaml"
             find: "<parameters.name>"
             replaceWith: ${{ parameters.name }}
